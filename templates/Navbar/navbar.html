@@ -72,7 +72,7 @@
             <!--Search Form-->
             <form action="{% url 'search_results' %}" method="GET" class="d-flex">
               <input type="search" class="border-none px-1" name="query" placeholder="Browse Products..." id="">
-              <input type="Submit" class=" btn btn-primary" value="Search" id="">
+              <!--input type="Submit" class=" btn btn-primary" value="Search" id=""-->
             </form>
           </div>
         </div>
@@ -106,19 +106,24 @@
                 </li>
               </ul>
             </li>
-            <li><a class="nav-link scrollto" href="#team">Contact Us</a></li>
+            <li><a class="nav-link scrollto" href="{% url 'contact' %}">Contact Us</a></li>
             <!--li><a href="blog.html">Blog</a></!--li> < -->
+            {% if request.user.is_authenticated %}
             <li class="dropdown">
-              <a href="#"
-                ><span>User Account</span> <i class="bi bi-chevron-down"></i
-              ></a>
+              <a href="#" class="p-0"><img class="mx-3" src="{{ user_profile.profile_img.url }}" style="width: auto; height: 45px; border-radius: 50%;" alt=""><span>@{{ user.username }}</span> <i class="bi bi-chevron-down"></i></a>
               <ul>
-                <li><a href="{% url 'profile' %}">Profile</a></li>
-                <li><a href="{% url 'login' %}">Register/Login</a></li>
+                <li><a href="{% url 'profile' user.id %}">Profile</a></li>
                 <li><a href="{% url 'logout' %}">Log Out</a></li>
                 <!--li><a href="#">Drop Down 4</a></li-->
               </ul>
             </li>
+            {% else %}
+            <li class="dropdown">
+              <a href="{% url 'login' %}"
+                ><span>Login</span> <i class=""></i
+              ></a>
+            </li>
+            {% endif %}
 
             <!--li><a class="nav-link scrollto" href="#contact">Contact</a></li>
           <li--<a class="getstarted scrollto" href="#about">Get Started</a></li-->
@@ -139,7 +144,7 @@
   <body>
     <!-- ======= Footer ======= -->
     <footer id="footer" class="footer">
-      <div class="footer-newsletter">
+      <!--div class="footer-newsletter">
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-lg-12 text-center">
@@ -161,7 +166,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div-->
 
       <div class="footer-top">
         <div class="container">
@@ -198,9 +203,6 @@
                 </li>
                 <li>
                   <i class="bi bi-chevron-right"></i> <a href="{% url 'courses' %}">Courses</a>
-                </li>
-                <li>
-                  <i class="bi bi-chevron-right"></i> <a href="#">Services</a>
                 </li>
                 <li>
                   <i class="bi bi-chevron-right"></i
@@ -250,9 +252,6 @@
                 <strong>Phone:</strong> +1 5589 55488 55<br />
                 <strong>Email:</strong> info@example.com<br />
               </p>
-              <p>
-                Visit the <a style="color: #ff6;" href="">Contact section</a> to write us a Message
-              </p>
             </div>
           </div>
         </div>
@@ -264,7 +263,7 @@
           >. All Rights Reserved
         </div>
         <div class="credits">
-          <!-- All the links in the footer should remain intact. -->
+          <! All the links in the footer should remain intact. -->
           <!-- You can delete the links only if you purchased the pro version. -->
           <!-- Licensing information: https://bootstrapmade.com/license/ -->
           <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/flexstart-bootstrap-startup-template/ ->

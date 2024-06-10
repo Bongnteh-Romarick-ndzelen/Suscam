@@ -1,12 +1,27 @@
 from django.contrib import admin
-from .models import Courses, Products
+from .models import Courses, Products, Profile, ContactUs, Comments
 
 # Register your models here.
 class CourseAdmin(admin.ModelAdmin):
     list_display = ['course_name', 'course_id', 'price','created']
+    list_per_page = 5
+    list_filter = ['course_name', 'course_category','course_id','price','created']
 
 class ProductsAdmin(admin.ModelAdmin):
     list_display = ['name', 'product_id', 'available', 'category','price', 'created']
 
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ['user', 'user_id','profile_img', 'location', 'date_of_birth']
+    
+class ContactUsAdmin(admin.ModelAdmin):
+    list_display = ['name', 'email', 'contactNumber', 'subject','sent_date']
+    list_per_page = 5
+    
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ['user', 'id', 'comment_date']
+
 admin.site.register(Courses, CourseAdmin)
 admin.site.register(Products, ProductsAdmin)
+admin.site.register(Profile, ProfileAdmin)
+admin.site.register(ContactUs, ContactUsAdmin)
+admin.site.register(Comments, CommentAdmin)

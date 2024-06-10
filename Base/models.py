@@ -1,10 +1,9 @@
 from django.core.validators import FileExtensionValidator
-from django.core.validators import RegexValidator
-from django.core.exceptions import ValidationError
-import re
-import uuid
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import User
+#from django_countries.field import CountryField
+#from phonenumber_field.modelfields import PhoneNumberField
 
 # def Validate_Course_id(value):
 #     pattern = r'^(?!.*(.).*\1)[a-zA-Z0-9-]{36}$'
@@ -52,9 +51,39 @@ class Products(models.Model):
     #rating = models
 
 class Comments(models.Model):
-    name = models.CharField(max_length=100)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     id = models.AutoField( primary_key=True)
     message = models.TextField()
+    comment_date = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
-        return self.message
+        return self.user.username
+    
+# Create your models here.
+class Profile(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    id_user = models.IntegerField(default=1)
+    bio = models.TextField(blank=True)
+    profile_img = models.ImageField(upload_to="profile_Images", default="default.png")
+    #phone_number = models.PhoneNumberField(blank=True)
+    location = models.CharField(max_length=100, blank=True)
+    #country = models.CountryField(blank=True)
+    date_of_birth = models.DateField(null=True, blank=True)
+    
+
+    def __str__(self):
+        return self.user.username
+    
+class ContactUs(models.Model):
+    name = models.CharField(max_length=250)
+    email = models.EmailField(max_length=250)
+    contactAddress = models.CharField(max_length=250, blank=True, null=True)
+    contactNumber = models.IntegerField(blank=True, null=True)
+    message = models.TextField()
+    subject = models.CharField(max_length=100)
+    sent_date = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        ordering = ('-sent_date',)
+    def __str__(self):
+        return self.subject

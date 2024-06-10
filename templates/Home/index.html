@@ -3,7 +3,6 @@
   {% load static %}
   {% block content %}
   <div>
-
     <!-- ======= Hero Section ======= -->
     <section id="hero" class="hero d-flex align-items-center">
       <div class="container">
@@ -101,7 +100,7 @@
             {% for product in products %}
             <div class="flex-item">
                 <center>
-                    <p><img class="p-1" width="auto" height="150" src="{{product.image.url}}" alt="product.product_name"></p>
+                    <p><img class="p-2" src="{{product.image.url}}" alt="product.product_name"></p>
                 </center>
                 <center>
                     <h5 class="title"><strong>{{product.product_name}}</strong></h5>
