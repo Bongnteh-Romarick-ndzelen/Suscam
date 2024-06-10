@@ -19,4 +19,5 @@ urlpatterns = [
     path('contact/', views.contact_us, name='contact'),
 
     path('terms_conditions/', views.terms_conditions, name='terms_conditions'),
+    path('comments/', views.comments, name='comments'),
 ]

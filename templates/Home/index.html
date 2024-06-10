@@ -1,5 +1,6 @@
 
   {% extends "Navbar/navbar.html" %}
+  {% load crispy_forms_tags %}
   {% load static %}
   {% block content %}
   <div>
@@ -495,6 +496,30 @@
         </div>
       </section>
       <!-- End Team Section -->
+      <section class="comment" id="coment">
+        <div class="container">
+          <div class="row mx-3 my-2 justify-content-center">
+            <div class="col-md-7 shadow rounded py-3" style="background-color: #1c3115; color:#d2d2d2;">
+              <center><h5>Recents Comments</h5></center><hr>
+              {% for comment in comments %}
+                  <p class="text-info shadow pb-1 p-lg-1"><span class="text-primary"><strong>@{{ comment.user.username }} </strong></span> {{ comment.comment_date|timesince }} Ago<br> <span class="text-light">{{ comment.message }}</span></p><hr>
+              {% endfor %}
+              <center><a class='btn btn-danger py-2 px-4' href="{% url 'comments' %}">More Comments</a></center>
+            </div>
+            {% if request.user.is_authenticated %}
+            <div class="col-md-5 p-2">
+              <div class="mx-2 shadow px-3 py-3 card" style="border: solid 3px #13cf0e; background-color: #d4d4d4;">
+                <form action="" method="post" class="">
+                  {% csrf_token %}
+                  {{ form|crispy }}
+                  <input type="submit" value="Submit" class="btn btn-primary form-control" style="padding: 15px auto;">
+                </form>
+              </div>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </section>
 
     </main>
   </div>

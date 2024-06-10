@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .forms import CustomUserCreationForm, ContactForm
+from .forms import CustomUserCreationForm, ContactForm, CommentForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .models import Courses, Products, Profile
+from .models import Courses, Products, Profile, Comments
 from django.db.models import Q
 from django.core.paginator import Paginator
 
@@ -21,7 +21,12 @@ def index(request):
     # user_profile = Profile.objects.get(user = request.user)
     # user_object = User.objects.get(username = request.user.username)
     # user_profile = Profile.objects.get(user=user_object)
+    comments = Comments.objects.all()[0:4]
     course  = Courses.objects.all()[::-1][0:4]
+    form = CommentForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect('index')
     # try:
     #     user_profile = Profile.objects.get(user=request.user)
     # except Profile.DoesNotExist:
@@ -30,6 +35,8 @@ def index(request):
     context = {
         'course': course,
         'products': products,
+        'form': form,
+        'comments': comments,
         # 'user_profile': user_profile,
         # 'search':search,
     }
@@ -281,3 +288,7 @@ def contact_us(request):
 def terms_conditions(request):
     context = {}
     return render(request, 'Terms_Conditions/terms_conditions.html', context)
+
+def comments(request):
+    comments = Comments.objects.all()
+    return render(request, 'Home/comments.html', { 'comments': comments })

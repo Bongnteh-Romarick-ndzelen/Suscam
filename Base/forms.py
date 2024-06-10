@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import ContactUs
+from .models import ContactUs, Comments
 from django.core.validators import RegexValidator
 
 
@@ -117,3 +117,17 @@ class ContactForm(forms.ModelForm):
     class Meta:
         model = ContactUs
         fields = ['name', 'email','contactNumber', 'subject', 'message']
+
+class CommentForm(forms.ModelForm):
+    message = forms.CharField(
+        label='Comment', max_length=1000,
+        widget=forms.Textarea(attrs={
+                                        'placeholder': 'Type Your Comment ...',
+                                        'style': 'margin-top: auto, margin-bottom: auto,padding:0',
+                                        'rows':4,
+                                    }
+                            )
+    )
+    class Meta:
+        model = Comments
+        fields = ['user', 'message', ]

@@ -56,6 +56,9 @@ class Comments(models.Model):
     message = models.TextField()
     comment_date = models.DateTimeField(auto_now_add=True)
     
+    class Meta:
+        ordering = ['-comment_date',]
+
     def __str__(self):
         return self.user.username
     

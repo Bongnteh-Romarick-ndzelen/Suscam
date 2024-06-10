@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "phonenumber_field",
     #apps
     "Base",
+    "Security",
     #third party apps
     "crispy_forms",
     "crispy_bootstrap5",

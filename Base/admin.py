@@ -18,7 +18,7 @@ class ContactUsAdmin(admin.ModelAdmin):
     list_per_page = 5
     
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ['user', 'id', 'comment_date']
+    list_display = ['user', 'id','message', 'comment_date',]
 
 admin.site.register(Courses, CourseAdmin)
 admin.site.register(Products, ProductsAdmin)
