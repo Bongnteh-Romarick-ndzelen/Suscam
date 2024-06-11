@@ -2465,8 +2465,8 @@ section {
   font-size: 16px;
 }
 .flex-item img {
-    width: auto;
-    height: 100px;
+    width: 97%;
+    height: 200px;
   }
 @media (max-width: 768px) {
   .flex-parent {

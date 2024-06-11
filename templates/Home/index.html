@@ -3,17 +3,20 @@
   {% load crispy_forms_tags %}
   {% load static %}
   {% block content %}
+  <style>
+    
+  </style>
   <div>
     <!-- ======= Hero Section ======= -->
     <section id="hero" class="hero d-flex align-items-center">
       <div class="container">
         <div class="row">
-          <div class="col-lg-6 d-flex flex-column justify-content-center">
-            <h1 data-aos="fade-up">
+          <div class="col-lg-6 d-flex flex-column justify-content-center text-start rounded px-3 py-4" style="background-color: #021801;">
+            <h1 data-aos="fade-up" class="" style="color: #96fa98;">
               Welcome to SUSCAM, Your trusted partner in cyberSecurity
               Solutions, products and Education
             </h1>
-            <h2 data-aos="fade-up" data-aos-delay="400">
+            <h2 data-aos="fade-up" data-aos-delay="400" class="text-light">
               At SUSCAM, we understand the critical importance of protecting
               your digital assets in today's interconnected world. With cyber
               threats becoming increasingly sophisticated, it's crucial to have
@@ -46,15 +49,15 @@
 
     <main id="main">
       <!-- ======= About Section ======= -->
-      <section id="about" class="about">
+      <section id="about" class="about bg-dark">
         <div class="container" data-aos="fade-up">
           <div class="row gx-0">
             <div
-              class="col-lg-6 d-flex flex-column justify-content-center"
+              class="col-lg-6 d-flex flex-column justify-content-center rounded"
               data-aos="fade-up"
               data-aos-delay="200"
             >
-              <div class="content">
+              <div class="content p-2 rounded bg-light-subtle">
                 <h3>Who We Are</h3>
                 <h2>
                   Protecting Your Digital World And providing Online Courses
@@ -81,7 +84,7 @@
               data-aos="zoom-out"
               data-aos-delay="200"
             >
-              <img src="{% static 'assets/img/about.jpg' %}" class="img-fluid" alt="" />
+              <img src="{% static 'assets/img/about.jpg' %}" class="img-fluid rounded" alt="" />
             </div>
           </div>
         </div>
@@ -90,23 +93,25 @@
 
       <!-- ======= Values Section ======= -->
       <section id="values" class="values">
-        <div class="container" data-aos="fade-up">
-          <header class="section-header mb-3">
-            <h2>Products</h2>
-            <p>Below are the list of products available</p>
+        <div class="container bg-dark" data-aos="fade-up">
+          <header class="mb-3 pt-3 text-light">
+            <center>
+              <h2 style="color: #96fa98;">Products</h2>
+              <p>Below are the list of products available</p>
+            </center>
           </header>
 
-          <div class="flex-parent">
+          <div class="flex-parent bg-dark py-3">
             
             {% for product in products %}
             <div class="flex-item">
                 <center>
-                    <p><img class="p-2" src="{{product.image.url}}" alt="product.product_name"></p>
+                    <p><img class="p-2 rounded" src="{{product.image.url}}" alt="product.product_name"></p>
                 </center>
                 <center>
                     <h5 class="title"><strong>{{product.product_name}}</strong></h5>
                 </center>
-                <p class="content">{{product.product_des|slice:":70"}}....</p>
+                <p class="content" style="font-size: 1em;"><i>{{product.product_des|slice:":90"}}....</i></p>
                 <center><p><a href="{% url 'product' product.product_id %}" <span class="enrol btn btn-primary" style="color:#fff"> View and Enroll</span><a/></p></center>
             </div>
             {% endfor %}
@@ -499,7 +504,7 @@
       <section class="comment" id="coment">
         <div class="container">
           <div class="row mx-3 my-2 justify-content-center">
-            <div class="col-md-7 shadow rounded py-3" style="background-color: #1c3115; color:#d2d2d2;">
+            <div class="col-md-7 shadow rounded py-3 bg-dark" style=" color:#d2d2d2;">
               <center><h5>Recents Comments</h5></center><hr>
               {% for comment in comments %}
                   <p class="text-info shadow pb-1 p-lg-1"><span class="text-primary"><strong>@{{ comment.user.username }} </strong></span> {{ comment.comment_date|timesince }} Ago<br> <span class="text-light">{{ comment.message }}</span></p><hr>
