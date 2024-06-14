@@ -1,0 +1,59 @@
+{% extends "Navbar/navbar.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <style>
+        body {
+            background-color: #D5DDDF;
+        }
+    </style>
+    <div class="container mt-5">
+        <div class="row shadow  my-2 justify-content-center rounded" style="background-color: #D4EDE7;">
+            <div class="col-md-5 p-2 mt-5 mb-3 rounded mx-2" style="background-color: #020E0C;">
+                <p class="text-white">Get in touch by filling the form bellow! The fields mark * are required</p><hr style="border: 2px solid #fffff0;">
+                <form action="" method="POST" class="p-3" style="background-color:  #022922; color: #E9E4E4; border-radius: 15px; border: 5px solid #0CB2B2;">
+                    {% csrf_token %}
+
+                    {% if messages %}
+                    <div class="alert alert-success fade show" role="alert">
+                        {% for message in messages %}
+                        <p {% if message.tags %} class="rounded" style="color:#0f8686; font-weight:bold; font-size:1.2rem;"{% endif %}><i>{{ message }}</i></p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                    {{ form|crispy }}
+                    <input class="btn btn-danger text-white fs-5 form-control" style="padding: 9px;" type="submit" value="Send">
+                </form>
+            </div>
+            <div class="col-md-5 shadow p-3 mt-5 mb-3 rounded" style="background-color: #020E0C;">
+                <!--display available courses-->
+                <div class="p-3 rounded" style="background-color: #022922;">
+                    <center><h5 style="color: #CAD6D6;">Recent Courses</h5></center> <hr style="border: 2px solid #fffff0;">
+                    {% for course in courses %}
+                        <a class="text-white" href="{% url 'course' course.course_id %}">
+                            <div style="background-color: #091e22;" class="shadow p-1 justify-content-center my-2">
+                                <center><p><i>{{ course.course_name }}</i></p></center>
+                            </div>
+                        </a>
+                    {% endfor %}
+                    <hr>
+                    <center><a class="btn btn-success text-white" href="{% url 'courses' %}">More Courses</a></center>
+                </div>
+
+                <!--display available Products-->
+                <div class="p-3 rounded my-2" style="background-color: #022922;">
+                    <center><h5 style="color: #CAD6D6;">Recent Products</h5></center> <hr style="border: 2px solid #fffff0;">
+                    {% for product in products %}
+                        <a class="text-white" href="{% url 'product' product.product_id %}">
+                            <div style="background-color: #091e22;" class="shadow p-1 justify-content-center my-2">
+                                <center><p><i>{{ product.name }}</i></p></center>
+                            </div>
+                        </a>
+                    {% endfor %}
+                    <hr>
+                    <center><a href="{% url 'products' %}" class="btn btn-success text-white">More Products</a></center>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
