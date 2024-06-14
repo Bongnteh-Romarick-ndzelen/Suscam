@@ -10,7 +10,7 @@ from django.db.models import Q
 from django.core.paginator import Paginator
 
 
-
+user_profile = Profile.objects.all()
 
 # Create your views here.
 
@@ -25,7 +25,10 @@ def index(request):
     course  = Courses.objects.all()[::-1][0:4]
     form = CommentForm(request.POST or None)
     if form.is_valid():
-        form.save()
+        comment = form.save(commit=False)
+        comment.user = request.user
+        #comment.post = post
+        comment.save()
         return redirect('index')
     # try:
     #     user_profile = Profile.objects.get(user=request.user)
@@ -37,7 +40,7 @@ def index(request):
         'products': products,
         'form': form,
         'comments': comments,
-        # 'user_profile': user_profile,
+        'user_profile': user_profile,
         # 'search':search,
     }
     return render(request, 'Home/index.html', context)
@@ -58,7 +61,7 @@ def course(request, pk):
         'course': course,
         'course2': course2,
         'products': products,
-        # 'user_profile': user_profile,
+        'user_profile': user_profile,
         }
     return render(request, 'Courses/course.html', context)
 
@@ -123,7 +126,7 @@ def courses(request):
         'course_list': slice_courses,
         'total': total,
         'page_obj' : page_obj,
-        # 'user_profile' : user_profile,
+        'user_profile' : user_profile,
     }
     return render(request, 'Courses/courses.html', context)
 
@@ -151,7 +154,7 @@ def products(request):
         'products': slice_products,
         'total': total,
         'page_obj' : page_obj,
-        # 'user_profile' : user_profile,
+        'user_profile' : user_profile,
     }
     return render(request, 'Products/products.html', context)
 
@@ -171,7 +174,7 @@ def product(request, pk):
         'product': product,
         'product_list': product_list,
         'courses': courses,
-        # 'user_profile': user_profile,
+        'user_profile': user_profile,
         }
     return render(request, 'Products/product.html', context)
 
@@ -242,21 +245,20 @@ def register(request):
             # Get the email from the form
             # Save the email or perform any necessary operations
             user = form.save(commit=False)
-            user.username = user.username.lower()
             user.email = email.lower()
             user.save()
             login(request, user)
             
-            # create a Profile model for the new user
-            user_model = User.objects.get(username=username)
-            new_profile = Profile.objects.create(
-                user=user_model, id_user=user_model.id
-            )
-            new_profile.save()
+            #create a Profile model for the new user
+            # user_model = User.objects.get(username=username)
+            # new_profile = Profile.objects.create(
+            #     user=user_model, id=user_model.id
+            # )
+            # new_profile.save()
             return redirect('index')
         else:
             messages.error(request, 'An error occurred during registration!')
-    return render(request, 'Authenticate/register.html', {'form': form})
+    return render(request, 'Authenticate/register.html', {'form': form, })
 
 def logout_view(request):
     logout(request)
@@ -281,6 +283,7 @@ def contact_us(request):
         'form': form,
         'courses': courses,
         'products': products,
+        'user_profile':user_profile
     }
     return render(request, 'Contact/contact.html', context)
 
@@ -290,5 +293,6 @@ def terms_conditions(request):
     return render(request, 'Terms_Conditions/terms_conditions.html', context)
 
 def comments(request):
+    user_profile = Profile.objects.all()
     comments = Comments.objects.all()
-    return render(request, 'Home/comments.html', { 'comments': comments })
+    return render(request, 'Home/comments.html', { 'comments': comments, 'user_profile' : user_profile, })

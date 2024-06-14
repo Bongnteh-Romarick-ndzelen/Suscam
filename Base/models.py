@@ -67,12 +67,13 @@ class Profile(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     id_user = models.IntegerField(default=1)
     bio = models.TextField(blank=True)
-    profile_img = models.ImageField(upload_to="profile_Images", default="default.png")
-    #phone_number = models.PhoneNumberField(blank=True)
+    profile_img = models.ImageField(upload_to="profile_Images", default="default.jpg")
+    phone_number = models.IntegerField(blank=True, null=True)
     location = models.CharField(max_length=100, blank=True)
-    #country = models.CountryField(blank=True)
+    country = models.CharField(max_length=200, blank=True, null=True)
     date_of_birth = models.DateField(null=True, blank=True)
-    
+    level_of_education = models.CharField(max_length=200, blank=True, null=True)
+    courses_enroll = models.ForeignKey(Courses, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
         return self.user.username

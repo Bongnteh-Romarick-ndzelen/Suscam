@@ -110,7 +110,7 @@
             <!--li><a href="blog.html">Blog</a></!--li> < -->
             {% if request.user.is_authenticated %}
             <li class="dropdown">
-              <a href="#" class="p-0"><img class="mx-3" src="{{ user_profile.profile_img.url }}" style="width: 30px; height: 30px; border-radius: 40%;" alt=""><span>@{{ user.username }}</span> <i class="bi bi-chevron-down"></i></a>
+              <a href="#" class="p-0"><img class="mx-3" src="{{ user_profile.profile_img.url }}" style="width: 30px; height: 30px; border-radius: 50%;" alt=""><span>@{{ user.username }}</span> <i class="bi bi-chevron-down"></i></a>
               <ul>
                 <li><a href="{% url 'profile' user.id %}">Profile</a></li>
                 <li><a href="{% url 'logout' %}">Log Out</a></li>
