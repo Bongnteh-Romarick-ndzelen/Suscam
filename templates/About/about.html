@@ -1,13 +1,35 @@
 {% extends "Navbar/navbar.html" %}
 {% load static %}
 {% block content %}
+    <style>
+        .scrolling-wrapper {
+            overflow-x: auto;
+            display: flex;
+            flex-wrap: nowrap;
+            -webkit-overflow-scrolling: touch;
+        }
+        .card {
+            flex: 0 0 auto;
+            width: 300px;
+            margin-right: 15px;
+            margin-bottom: 20
+            px;
+        }
+        .social-icons {
+            margin-top: 10px;
+        }
+        .social-icons a {
+            margin-right: 10px;
+            color: #555;
+        }
+    </style>
     <main id="main">
         <div class="jumbotron text-center mt-5 pt-5">
-            <h1 class="display-4">About Us</h1>
+            <h1 class="display-5" style="color: #064303;">About Us</h1>
             <hr class="my-2">
-            <p class="py-3 px-2 shadow text-start" style="background-color: #124a11; color: #D1E0CD;">Welcome to CyberSecure, a cutting-edge cybersecurity startup dedicated to safeguarding your digital world. <br>
+            <p class="py-5 px-2 shadow text-center rounded-circle" style="background-color: #0a2609; color: #D1E0CD;">Welcome to CyberSecure, a cutting-edge cybersecurity startup dedicated to safeguarding your digital world. <br>
                 Learn more about our mission, vision, and the amazing team behind our success.
-                <center><a class="btn btn-success btn-lg" href="#team">Meet the Team</a></center>
+                <center><a class="py-2 px-5 text-white border my-3" style="background-color: #23025C;" href="#team">Meet the Team</a></center>
 
             </p>
         </div>
@@ -51,8 +73,8 @@
         <div class="container mt-5">
 
             <div class="row mt-5 bg-dark text-white py-3 px-2">
-                <div class="col-md-6">
-                    <h2 class="text-center" style="color: #0CEA08;">Our Mission</h2>
+                <div class="col-md-6 shadow px-2">
+                    <h2 class="text-center" style="color: #0CEA08;">Our Mission</h2> <hr>
                     <p>
                         Our mission is to protect businesses and individuals from cyber threats through innovative solutions and comprehensive security measures. <br>
                 In addition to our advanced cybersecurity services, we offer an extensive online course designed to equip you with the knowledge and skills needed to defend against cyber attacks. 
@@ -60,124 +82,92 @@
                 ensuring a safer online environment for all. <br>
                     </p>
                 </div>
-                <div class="col-md-6">
-                    <h2 class="text-center" style="color: #0CEA08;">Our Vision</h2>
+                <div class="col-md-6 shadow px-2">
+                    <h2 class="text-center" style="color: #0CEA08;">Our Vision</h2><hr>
                     <p>
                         Our vision is to be a leading provider of educational resources, fostering a community of lifelong learners and thinkers. We aim to inspire and support our users in their pursuit of knowledge.
                     </p>
                 </div>
             </div>
 
-            <div id="team" class="mt-5">
-                <h2 class="text-center">Our Team</h2>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="card mt-4">
-                            <img src="https://via.placeholder.com/150" class="card-img-top" alt="John Doe">
-                            <div class="card-body text-center">
-                                <h5 class="card-title">John Doe</h5>
-                                <p class="card-text">CEO</p>
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#johnDoeModal">
-                                    More Info
-                                </button>
-                            </div>
+            <!-- ======= Team Section ======= -->
+            <div class="container mt-5 my-2 py-3 bg-dark rounded">
+                <h2 class="text-center py-3 border-bottom mx-2" style="color: #0CEA08;">Our Team</h2><hr>
+                <div class="scrolling-wrapper my-2">
+                    <div class="card">
+                        <img src="https://via.placeholder.com/300" class="card-img-top" alt="Image 1">
+                        <div class="card-body shadow">
+                            <h5 class="card-title text-center fw-bold" style="color: #0a2609;">Williams Sunjo <br><span class="fw-bold fs-6"><i>Chief Executive Officer</i></span></h5>
+                            <center></center>
+                            <p class="card-text"><i>Some quick example text to build on the card title and make up the bulk of the card's content.</i></p>
+                            <center>
+                                <div class="social-icons justify-content-center">
+                                    <a href="#" class="fab fa-facebook-f"></a>
+                                    <a href="#" class="fab fa-twitter"></a>
+                                    <a href="#" class="fab fa-instagram"></a>
+                                    <a href="#" class="fab fa-linkedin-in"></a>
+                                </div>
+                            </center>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="card mt-4">
-                            <img src="https://via.placeholder.com/150" class="card-img-top" alt="Jane Smith">
-                            <div class="card-body text-center">
-                                <h5 class="card-title">Jane Smith</h5>
-                                <p class="card-text">CTO</p>
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#janeSmithModal">
-                                    More Info
-                                </button>
-                            </div>
+                    <div class="card">
+                        <img src="https://via.placeholder.com/300" class="card-img-top" alt="Image 2">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title 2</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <center>
+                                <div class="social-icons justify-content-center">
+                                    <a href="#" class="fab fa-facebook-f"></a>
+                                    <a href="#" class="fab fa-twitter"></a>
+                                    <a href="#" class="fab fa-instagram"></a>
+                                    <a href="#" class="fab fa-linkedin-in"></a>
+                                </div>
+                            </center>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="card mt-4">
-                            <img src="https://via.placeholder.com/150" class="card-img-top" alt="Emily Johnson">
-                            <div class="card-body text-center">
-                                <h5 class="card-title">Emily Johnson</h5>
-                                <p class="card-text">Head of Marketing</p>
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#emilyJohnsonModal">
-                                    More Info
-                                </button>
-                            </div>
+                    <div class="card">
+                        <img src="https://via.placeholder.com/300" class="card-img-top" alt="Image 3">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title 3</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <center>
+                                <div class="social-icons justify-content-center">
+                                    <a href="#" class="fab fa-facebook-f"></a>
+                                    <a href="#" class="fab fa-twitter"></a>
+                                    <a href="#" class="fab fa-instagram"></a>
+                                    <a href="#" class="fab fa-linkedin-in"></a>
+                                </div>
+                            </center>
                         </div>
                     </div>
+                    <div class="card">
+                        <img src="https://via.placeholder.com/300" class="card-img-top" alt="Image 4">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title 4</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <center>
+                                <div class="social-icons justify-content-center">
+                                    <a href="#" class="fab fa-facebook-f"></a>
+                                    <a href="#" class="fab fa-twitter"></a>
+                                    <a href="#" class="fab fa-instagram"></a>
+                                    <a href="#" class="fab fa-linkedin-in"></a>
+                                </div>
+                            </center>
+                        </div>
+                    </div>
+                    <!-- Add more cards as needed -->
                 </div>
             </div>
-
+            <!-- End Team Section -->
             <div class="row mt-5">
                 <div class="col-md-12">
                     <center><p class="fw-bold">If you have any questions or inquiries, feel free to <a href="{% url 'contact' %}">contact us</a>.</p></center>
                 </div>
             </div>
         </div>
-
-        <!-- Modal for John Doe -->
-        <div class="modal fade" id="johnDoeModal" tabindex="-1" role="dialog" aria-labelledby="johnDoeModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="johnDoeModalLabel">John Doe - CEO</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    John Doe has over 20 years of experience in the industry, leading teams to success through innovative strategies and a passion for excellence.
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-                </div>
-            </div>
-            </div>
-
-            <!-- Modal for Jane Smith -->
-            <div class="modal fade" id="janeSmithModal" tabindex="-1" role="dialog" aria-labelledby="janeSmithModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="janeSmithModalLabel">Jane Smith - CTO</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    Jane Smith is a tech visionary with a knack for building scalable and robust systems. She has been instrumental in shaping our tech strategy.
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal for Emily Johnson -->
-        <div class="modal fade" id="emilyJohnsonModal" tabindex="-1" role="dialog" aria-labelledby="emilyJohnsonModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="emilyJohnsonModalLabel">Emily Johnson - Head of Marketing</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                Emily Johnson is a marketing expert with a deep understanding of digital marketing and brand building. She has successfully launched multiple campaigns.
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-            </div>
-        </div>
-        </div>
-
-
 
     </div>
 {% endblock content %}

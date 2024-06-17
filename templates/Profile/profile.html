@@ -43,25 +43,25 @@
                         <div class="row mb-3 shadow py-2">
                             <label class="col-sm-3 col-form-label">Country</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" value="USA" disabled>
+                                <input type="text" class="form-control" value="{{ user_profile.country }}" disabled>
                             </div>
                         </div>
                         <div class="row mb-3 shadow py-2">
-                            <label class="col-sm-3 col-form-label">Location</label>
+                            <label class="col-sm-3 col-form-label">City</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" value="{{ user_profile.location }}" disabled>
+                                <input type="text" class="form-control" value="{{ user_profile.city }}" disabled>
                             </div>
                         </div>
                         <div class="row mb-3 shadow py-2">
                             <label class="col-sm-3 col-form-label">Phone Number</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" value="+1234567890" disabled>
+                                <input type="text" class="form-control" value="{{ user_profile.phone_number }}" disabled>
                             </div>
                         </div>
                         <div class="row mb-3 shadow py-2">
                             <label class="col-sm-3 col-form-label">Level of Study</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" value="Undergraduate" disabled>
+                                <input type="text" class="form-control" value="{{ user_profile.level_of_education }}" disabled>
                             </div>
                         </div>
                         <div class="row mb-3 shadow py-2">

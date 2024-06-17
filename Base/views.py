@@ -108,7 +108,7 @@ def courses(request):
     # except Profile.DoesNotExist:
     #     # Create a new Profile object if it doesn't exist
     #     user_profile = Profile.objects.create(user=request.user)
-    course_list = Courses.objects.all()[::-1]
+    course_list = Courses.objects.all()
     total = Courses.objects.all().count()
     
     #adding paginator to contains 8 items per page
@@ -137,7 +137,7 @@ def products(request):
     # except Profile.DoesNotExist:
     #     # Create a new Profile object if it doesn't exist
     #     user_profile = Profile.objects.create(user=request.user)
-    products = Products.objects.all()[::-1]
+    products = Products.objects.all()
     total = Products.objects.all().count()
     #adding paginator to contains 8 items per page
     paginator = Paginator(products, 4)

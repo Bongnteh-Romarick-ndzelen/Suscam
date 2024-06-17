@@ -1,3 +1,4 @@
+import uuid
 from django.core.validators import FileExtensionValidator
 from django.db import models
 from django.utils import timezone
@@ -15,16 +16,19 @@ class Courses(models.Model):
     course_id = models.BigAutoField(primary_key=True)
     course_name = models.CharField(max_length=250)
     description = models.TextField()
-    #video =models.
+    video_file = models.FileField(upload_to='Course_Videos/')
+    paid = models.BooleanField(default=False)
     course_category = models.CharField(max_length=250, blank=True, null=True)
     price = models.DecimalField( default=1000, max_digits=10, decimal_places=2)
     old_price = models.DecimalField(max_digits=10, decimal_places=2)
-    course_img = models.ImageField(upload_to='CourseImage/', validators = [FileExtensionValidator(allowed_extensions=['jpg', 'png', 'jpeg'])])
+    course_img = models.ImageField(upload_to='CourseImage/', validators = [FileExtensionValidator(allowed_extensions=['jpg', 'png', 'jpeg'])], null=True, blank=True)
     created = models.DateTimeField(default = timezone.now)
     updated = models.DateTimeField(auto_now=True)
     #ratings = models.
     model_type = 'Course'
     
+    class Meta:
+        ordering = ('created', 'updated')
     
     def save(self, *args, **kwargs):
         if not self.course_id:
@@ -48,8 +52,19 @@ class Products(models.Model):
     created = models.DateTimeField(default = timezone.now)
     image = models.ImageField(upload_to='Product_Images', validators = [FileExtensionValidator(allowed_extensions=['jpg', 'png', 'jpeg'])])
     model_type = 'Products'
+    
+    class Meta:
+        ordering = ['-created', '-updated']
     #rating = models
 
+#creating enrol
+class Enrollment(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    course = models.ManyToManyField(Courses, related_name='course_enrollment')
+    
+    
+    def __str__(self):
+        return self.user.username
 class Comments(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     id = models.AutoField( primary_key=True)
@@ -67,9 +82,9 @@ class Profile(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     id_user = models.IntegerField(default=1)
     bio = models.TextField(blank=True)
-    profile_img = models.ImageField(upload_to="profile_Images", default="default.jpg")
+    profile_img = models.ImageField(upload_to="profile_Images", default="default.jpg",  validators = [FileExtensionValidator(allowed_extensions=['jpg', 'png', 'jpeg'])])
     phone_number = models.IntegerField(blank=True, null=True)
-    location = models.CharField(max_length=100, blank=True)
+    city = models.CharField(max_length=100, blank=True)
     country = models.CharField(max_length=200, blank=True, null=True)
     date_of_birth = models.DateField(null=True, blank=True)
     level_of_education = models.CharField(max_length=200, blank=True, null=True)
@@ -91,3 +106,17 @@ class ContactUs(models.Model):
         ordering = ('-sent_date',)
     def __str__(self):
         return self.subject
+    
+#our team members
+class Team(models.Model):
+    name = models.CharField(max_length=250)
+    position = models.CharField(max_length= 300)
+    member_description = models.TextField()
+    member_img = models.ImageField(upload_to="TeamImages", validators = [FileExtensionValidator(allowed_extensions=['jpg', 'png', 'jpeg'])])
+    facebook_url = models.URLField(max_length=1000, blank=True, null=True)
+    linkedin_url = models.URLField(max_length=1000, blank=True, null=True)
+    twitter_url = models.URLField(max_length=1000, blank=True, null=True)
+    histogram_url = models.URLField(max_length=1000, blank=True, null=True)
+
+    def __str__(self):
+        return self.name

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Courses, Products, Profile, ContactUs, Comments
+from .models import *
 
 # Register your models here.
 class CourseAdmin(admin.ModelAdmin):
@@ -11,7 +11,7 @@ class ProductsAdmin(admin.ModelAdmin):
     list_display = ['name', 'product_id', 'available', 'category','price', 'created']
 
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ['user', 'user_id','profile_img', 'location', 'date_of_birth']
+    list_display = ['user', 'user_id','profile_img', 'country', 'city', 'date_of_birth']
     
 class ContactUsAdmin(admin.ModelAdmin):
     list_display = ['name', 'email', 'contactNumber', 'subject','sent_date']
@@ -19,9 +19,14 @@ class ContactUsAdmin(admin.ModelAdmin):
     
 class CommentAdmin(admin.ModelAdmin):
     list_display = ['user', 'id','message', 'comment_date',]
+    
+class TeamAdmin(admin.ModelAdmin):
+    list_display = ['name', 'id','position', ]
 
 admin.site.register(Courses, CourseAdmin)
 admin.site.register(Products, ProductsAdmin)
 admin.site.register(Profile, ProfileAdmin)
 admin.site.register(ContactUs, ContactUsAdmin)
 admin.site.register(Comments, CommentAdmin)
+admin.site.register(Enrollment)
+admin.site.register(Team, TeamAdmin)
