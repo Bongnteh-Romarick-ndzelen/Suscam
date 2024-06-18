@@ -40,12 +40,6 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-<<<<<<< HEAD
-    'django_countries',
-=======
-    "django_countries",
->>>>>>> origin/master
-    "phonenumber_field",
     #apps
     "Base",
     "Security",

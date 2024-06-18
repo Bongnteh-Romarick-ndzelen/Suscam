@@ -21,12 +21,10 @@
       href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
       rel="stylesheet"
     />
-<<<<<<< HEAD
+
     <!--Font awaresome images-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-=======
 
->>>>>>> origin/master
     <!-- Vendor CSS Files -->
     <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet" />
     <link
@@ -115,11 +113,10 @@
             <!--li><a href="blog.html">Blog</a></!--li> < -->
             {% if request.user.is_authenticated %}
             <li class="dropdown">
-<<<<<<< HEAD
-              <a href="#" class="p-0"><img class="mx-3" src="{{ user_profile.profile_img.url }}" style="width: 30px; height: 30px; border-radius: 50%;" alt=""><span>@{{ user.username }}</span> <i class="bi bi-chevron-down"></i></a>
-=======
+
+
               <a href="#" class="p-0"><img class="mx-3" src="{{ user_profile.profile_img.url }}" style="width: 30px; height: 30px; border-radius: 40%;" alt=""><span>@{{ user.username }}</span> <i class="bi bi-chevron-down"></i></a>
->>>>>>> origin/master
+
               <ul>
                 <li><a href="{% url 'profile' user.id %}">Profile</a></li>
                 <li><a href="{% url 'logout' %}">Log Out</a></li>
