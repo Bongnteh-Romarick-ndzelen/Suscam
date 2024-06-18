@@ -10,7 +10,11 @@ from django.db.models import Q
 from django.core.paginator import Paginator
 
 
+<<<<<<< HEAD
 user_profile = Profile.objects.all()
+=======
+
+>>>>>>> origin/master
 
 # Create your views here.
 
@@ -25,10 +29,14 @@ def index(request):
     course  = Courses.objects.all()[::-1][0:4]
     form = CommentForm(request.POST or None)
     if form.is_valid():
+<<<<<<< HEAD
         comment = form.save(commit=False)
         comment.user = request.user
         #comment.post = post
         comment.save()
+=======
+        form.save()
+>>>>>>> origin/master
         return redirect('index')
     # try:
     #     user_profile = Profile.objects.get(user=request.user)
@@ -40,7 +48,11 @@ def index(request):
         'products': products,
         'form': form,
         'comments': comments,
+<<<<<<< HEAD
         'user_profile': user_profile,
+=======
+        # 'user_profile': user_profile,
+>>>>>>> origin/master
         # 'search':search,
     }
     return render(request, 'Home/index.html', context)
@@ -61,7 +73,11 @@ def course(request, pk):
         'course': course,
         'course2': course2,
         'products': products,
+<<<<<<< HEAD
         'user_profile': user_profile,
+=======
+        # 'user_profile': user_profile,
+>>>>>>> origin/master
         }
     return render(request, 'Courses/course.html', context)
 
@@ -88,7 +104,11 @@ def search_results(request):
     )
     products = Products.objects.filter(name__icontains=query)
     #print(query)
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> origin/master
     
     search_results = list(products) + list(courses)
     total_found1 = courses.count()
@@ -108,7 +128,11 @@ def courses(request):
     # except Profile.DoesNotExist:
     #     # Create a new Profile object if it doesn't exist
     #     user_profile = Profile.objects.create(user=request.user)
+<<<<<<< HEAD
     course_list = Courses.objects.all()
+=======
+    course_list = Courses.objects.all()[::-1]
+>>>>>>> origin/master
     total = Courses.objects.all().count()
     
     #adding paginator to contains 8 items per page
@@ -126,7 +150,11 @@ def courses(request):
         'course_list': slice_courses,
         'total': total,
         'page_obj' : page_obj,
+<<<<<<< HEAD
         'user_profile' : user_profile,
+=======
+        # 'user_profile' : user_profile,
+>>>>>>> origin/master
     }
     return render(request, 'Courses/courses.html', context)
 
@@ -137,7 +165,11 @@ def products(request):
     # except Profile.DoesNotExist:
     #     # Create a new Profile object if it doesn't exist
     #     user_profile = Profile.objects.create(user=request.user)
+<<<<<<< HEAD
     products = Products.objects.all()
+=======
+    products = Products.objects.all()[::-1]
+>>>>>>> origin/master
     total = Products.objects.all().count()
     #adding paginator to contains 8 items per page
     paginator = Paginator(products, 4)
@@ -154,7 +186,11 @@ def products(request):
         'products': slice_products,
         'total': total,
         'page_obj' : page_obj,
+<<<<<<< HEAD
         'user_profile' : user_profile,
+=======
+        # 'user_profile' : user_profile,
+>>>>>>> origin/master
     }
     return render(request, 'Products/products.html', context)
 
@@ -174,7 +210,11 @@ def product(request, pk):
         'product': product,
         'product_list': product_list,
         'courses': courses,
+<<<<<<< HEAD
         'user_profile': user_profile,
+=======
+        # 'user_profile': user_profile,
+>>>>>>> origin/master
         }
     return render(request, 'Products/product.html', context)
 
@@ -245,10 +285,15 @@ def register(request):
             # Get the email from the form
             # Save the email or perform any necessary operations
             user = form.save(commit=False)
+<<<<<<< HEAD
+=======
+            user.username = user.username.lower()
+>>>>>>> origin/master
             user.email = email.lower()
             user.save()
             login(request, user)
             
+<<<<<<< HEAD
             #create a Profile model for the new user
             # user_model = User.objects.get(username=username)
             # new_profile = Profile.objects.create(
@@ -259,6 +304,18 @@ def register(request):
         else:
             messages.error(request, 'An error occurred during registration!')
     return render(request, 'Authenticate/register.html', {'form': form, })
+=======
+            # create a Profile model for the new user
+            user_model = User.objects.get(username=username)
+            new_profile = Profile.objects.create(
+                user=user_model, id_user=user_model.id
+            )
+            new_profile.save()
+            return redirect('index')
+        else:
+            messages.error(request, 'An error occurred during registration!')
+    return render(request, 'Authenticate/register.html', {'form': form})
+>>>>>>> origin/master
 
 def logout_view(request):
     logout(request)
@@ -283,7 +340,10 @@ def contact_us(request):
         'form': form,
         'courses': courses,
         'products': products,
+<<<<<<< HEAD
         'user_profile':user_profile
+=======
+>>>>>>> origin/master
     }
     return render(request, 'Contact/contact.html', context)
 
@@ -293,6 +353,11 @@ def terms_conditions(request):
     return render(request, 'Terms_Conditions/terms_conditions.html', context)
 
 def comments(request):
+<<<<<<< HEAD
     user_profile = Profile.objects.all()
     comments = Comments.objects.all()
     return render(request, 'Home/comments.html', { 'comments': comments, 'user_profile' : user_profile, })
+=======
+    comments = Comments.objects.all()
+    return render(request, 'Home/comments.html', { 'comments': comments })
+>>>>>>> origin/master

@@ -130,4 +130,8 @@ class CommentForm(forms.ModelForm):
     )
     class Meta:
         model = Comments
+<<<<<<< HEAD
         fields = ['message', ]
+=======
+        fields = ['user', 'message', ]
+>>>>>>> origin/master
